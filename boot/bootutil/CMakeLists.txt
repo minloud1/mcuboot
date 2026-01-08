@@ -33,14 +33,25 @@ target_sources(bootutil
         src/image_rsa.c
         src/image_validate.c
         src/loader.c
+        src/loader_public.c
         src/swap_misc.c
         src/swap_move.c
         src/swap_scratch.c
         src/tlv.c
 )
+if(CONFIG_BOOT_DIRECT_XIP)
+    target_sources(bootutil
+        PRIVATE
+            src/loader_direct_xip.c
+            src/loader_xip_ram_common.c
+    )
+endif()
+
 if(CONFIG_BOOT_RAM_LOAD)
     target_sources(bootutil
         PRIVATE
+            src/loader_ram_load.c
+            src/loader_xip_ram_common.c
             src/ram_load.c
     )
 endif()

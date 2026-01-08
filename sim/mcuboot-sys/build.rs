@@ -483,7 +483,14 @@ fn main() {
     }
 
     conf.file("../../boot/bootutil/src/loader.c");
+    conf.file("../../boot/bootutil/src/loader_public.c");
+    if direct_xip {
+        conf.file("../../boot/bootutil/src/loader_direct_xip.c");
+        conf.file("../../boot/bootutil/src/loader_xip_ram_common.c");
+    }
     if ram_load {
+        conf.file("../../boot/bootutil/src/loader_ram_load.c");
+        conf.file("../../boot/bootutil/src/loader_xip_ram_common.c");
         conf.file("../../boot/bootutil/src/ram_load.c");
     }
     conf.file("../../boot/bootutil/src/swap_misc.c");
